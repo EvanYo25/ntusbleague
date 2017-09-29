@@ -338,6 +338,27 @@ def team(request , team_id , order="hit",y=4) :
 			members_bat.append(hitter)
 			team_bat.add(hitter)
 			team_bat.stat()
+		# evan code
+		else:
+			hitter = Hitter()
+			hitter.name = player.name
+			hitter.id = player.memberID
+			hitter.games_played = 0
+			hitter.pa = 0
+			hitter.single = 0
+			hitter.double = 0
+			hitter.triple = 0
+			hitter.hr = 0
+			hitter.rbi = 0
+			hitter.r = 0
+			hitter.bb = 0
+			hitter.so = 0
+			hitter.sf = 0
+			hitter.stat()
+			members_bat.append(hitter)
+			team_bat.add(hitter)
+			team_bat.stat()
+		# end evan code
 		members_bat=sorted(members_bat,key=attrgetter(order),reverse=True)
 
 		#pitching data
@@ -900,3 +921,9 @@ def register(request):
 		teams = Team.objects.order_by("current")
 		context={'teams':teams,'thirty':range(1,31),'alert':team.name}
 		return render(request,"sbleague/register.html",context)
+
+
+# def showplayers(request):
+#     players = Member.objects.all()
+#     context = {'players':players}
+#     return render(request, "sbleague/showplayers.html", context)
